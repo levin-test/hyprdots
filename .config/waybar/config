@@ -1,0 +1,47 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "modules-left": [
+        "wlr/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "memory",
+        "cpu",
+        "battery"
+    ],
+    "wlr/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+    "clock": {
+        "format": "{:%H:%M:%S}",
+        "interval": 1
+    },
+    "cpu": {
+        "format": "CPU {usage}%",
+        "interval": 5
+    },
+    "memory": {
+        "format": "MEM {percentage}%",
+        "interval": 5
+    },
+    "battery": {
+        "format": "BAT {capacity}%",
+        "states": {
+            "critical": 15,
+            "low": 30
+        }
+    },
+    "network": {
+        "format-wifi": "WiFi {essid}",
+        "format-ethernet": "Ethernet",
+        "format-disconnected": "Offline",
+        "on-click": "nmtui"
+    }
+}

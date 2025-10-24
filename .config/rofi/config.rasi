@@ -1,0 +1,71 @@
+configuration {
+  modi: "drun";
+  font: "JetBrains Mono 12";
+  icon-theme: "Adwaita";
+  show-icons: true;
+  display-drun: "Launch";
+}
+
+@theme "/dev/null"
+
+* {
+  bg-color: #1a1a1a;
+  fg-color: #e0e0e0;
+  accent-color: #66ccff;
+  border-color: #333333;
+}
+
+window {
+  background-color: @bg-color;
+  border: 1px solid @border-color;
+  border-radius: 8px;
+  padding: 10px;
+  width: 600px;
+  height: 400px;
+}
+
+mainbox {
+  orientation: vertical;
+  spacing: 10px;
+}
+
+inputbar {
+  children: [entry];
+  padding: 5px;
+  background-color: @bg-color;
+  border: 1px solid @border-color;
+  border-radius: 4px;
+}
+
+entry {
+  text-color: @fg-color;
+  placeholder: "Type to search...";
+}
+
+listview {
+  lines: 10;
+  scrollbar: true;
+  scrollbar-width: 8px;
+}
+
+element {
+  padding: 5px;
+  background-color: @bg-color;
+  text-color: @fg-color;
+  border-radius: 4px;
+}
+
+element selected {
+  background-color: @accent-color;
+  text-color: @bg-color;
+  border-radius: 4px;
+}
+
+element-icon {
+  size: 24px;
+  margin: 5px;
+}
+
+element-text {
+  vertical-align: 0.5;
+}
