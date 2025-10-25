@@ -9,15 +9,16 @@ configuration {
 @theme "/dev/null"
 
 * {
-  bg-color: #1a1a1a;
-  fg-color: #e0e0e0;
-  accent-color: #66ccff;
-  border-color: #333333;
+  bg-color: #121212;
+  fg-color: #b0b0b0;
+  accent-color: #606060;
+  border-color: #2a2a2a;
 }
 
 window {
   background-color: @bg-color;
-  border: 1px solid @border-color;
+  border: 1px;
+  border-color: @border-color;
   border-radius: 8px;
   padding: 10px;
   width: 600px;
@@ -33,7 +34,8 @@ inputbar {
   children: [entry];
   padding: 5px;
   background-color: @bg-color;
-  border: 1px solid @border-color;
+  border: 1px;
+  border-color: @border-color;
   border-radius: 4px;
 }
 
@@ -57,7 +59,7 @@ element {
 
 element selected {
   background-color: @accent-color;
-  text-color: @bg-color;
+  text-color: #d0d0d0;
   border-radius: 4px;
 }
 
