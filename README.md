@@ -7,21 +7,34 @@ GNU stow を用いて `~/.config` などに連携する運用を前提として�
 
 ## クイックスタート
 
-```sh
 # 1. このリポジトリをクローン
-git clone https://github.com/levin-test/hyprdots.git
-cd hyprdots
 
-# 2. パッケージをインストール（CachyOS環境想定）
+git clone <https://github.com/levin-test/hyprdots.git>
+cd hyprdots
 ./install-packages.sh
 
-# 3. 設定をホームディレクトリにリンク（stow使用）
-stow .config
+```sh
+# 1. このリポジトリをクローン
 ```
 
 ## ディレクトリ構成
 
+# 2. パッケージをインストール（CachyOS環境想定）
+
+./install-packages.sh
+
+# 3. 既存の設定ディレクトリがあれば削除またはリネーム
+
+rm -rf ~/.config/hypr ~/.config/waybar ~/.config/rofi  # 必要に応じて
+
+# 4. 設定をホームディレクトリにリンク（stow使用）
+
+stow -v -t ~/.config .config  # .config配下を~/.config/にリンク
+stow -v -t ~/bin bin          # bin配下を~/bin/にリンク
+
 ```
+```
+
 hyprdots/
 ├── .config/
 │   ├── hypr/        # Hyprland本体の設定
@@ -35,6 +48,7 @@ hyprdots/
 ├── bin/             # Hyprland専用の実行可能コマンド群
 ├── go/              # Go製コマンドのソース（オプション）
 └── install-packages.sh # パッケージインストールスクリプト
+
 ```
 
 ## 設定ファイル概要
@@ -90,18 +104,18 @@ CachyOS環境で実行してください。`paru` を使用してインストー
 ### ステップ2: 設定をホームディレクトリにリンク
 
 ```sh
-# .config/hypr を ~/.config/hypr にリンク
-stow -D .config/hypr 2>/dev/null || true  # 既存のリンクを削除（エラー無視）
-stow .config/hypr
+# 既存の設定ディレクトリがあれば削除またはリネーム
+rm -rf ~/.config/hypr ~/.config/waybar ~/.config/rofi  # 必要に応じて
 
-# .config/waybar を ~/.config/waybar にリンク
-stow -D .config/waybar 2>/dev/null || true
-stow .config/waybar
+# .config配下のすべて（hypr, waybar, rofi）を ~/.config/ にリンク
+stow -v -t ~/.config .config
 
-# .config/rofi を ~/.config/rofi にリンク
-stow -D .config/rofi 2>/dev/null || true
-stow .config/rofi
+# bin配下のコマンドを ~/bin/ にリンク
+stow -v -t ~/bin bin
 ```
+
+**既存の設定がある場合は、事前にバックアップを取ってください。**
+既存のリンクや設定ファイルがある場合は、先に削除（rm -rf）またはリネームしてください。
 
 ### ステップ3: モニター設定を確認・調整
 
@@ -139,15 +153,22 @@ stow .config/rofi
 
 ファイルの追加・削除が頻繁に発生する場合、以下の手順がもっとも安全です。
 
+stow -v .config   # その後、再度stowでリンクを作成
+
 ```sh
-# 例: .config/hypr を stow で ~/.config に連携する場合
-stow -D .config/hypr   # まずアンストウ（既存のリンクを安全に解除）
-stow .config/hypr      # その後、再度stowでリンクを作成
+# .config 配下の設定を更新する場合
+stow -D -t ~/.config .config   # まずアンストウ（既存のリンクを安全に解除）
+stow -v -t ~/.config .config   # その後、再度stowでリンクを作成
+
+# bin 配下のコマンドを更新する場合
+stow -D -t ~/bin bin
+stow -v -t ~/bin bin
 ```
 
 - `-D` オプションは「アンストウ（unlink）」を意味します。
+- `-v` オプションは詳細表示（どのファイルがリンクされたか確認できる）。
+- `-t` オプションでリンク先を明示します。
 - 追加・削除・変更があった場合は、**必ずアンストウ→再stow**の順で実行してください。
-- 他のディレクトリ（waybar, rofi, bin等）も同様に運用できます。
 
 ## 今後の設定予定
 

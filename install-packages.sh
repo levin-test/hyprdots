@@ -12,17 +12,17 @@ PKGS_OFFICIAL=(
   rofi               # Launcher
   networkmanager     # Network management
   pcmanfm-qt         # File manager
-  
+
   # === Terminal & Shell ===
   kitty              # Terminal emulator
   starship           # Prompt
   zoxide             # Fast directory jumper
-  
+
   # === Editors & Development ===
   neovim             # Terminal editor
   zed                # GUI editor
   go                 # Go language
-  
+
   # === CLI Tools ===
   eza                # Alternative to ls
   fd                 # Fast file search
@@ -31,11 +31,15 @@ PKGS_OFFICIAL=(
   delta              # git diff viewer
   lazygit            # Terminal git client
   go-yq              # YAML processor
-  
+
+
   # === Version Control & APIs ===
   git                # Version control
-  gh                 # GitHub CLI
-  
+  github-cli         # GitHub CLI
+
+  # === Dotfiles Management ===
+  stow               # Symlink farm manager
+
   # === System & File Management ===
   xdg-user-dirs      # User directory management
   xdg-utils          # XDG utilities
@@ -43,19 +47,19 @@ PKGS_OFFICIAL=(
   snapper            # btrfs snapshot management
   clamav             # Virus scanner
   rclone             # Cloud storage integration
-  
+
   # === System Monitoring ===
   fastfetch          # System info display
   htop               # Process viewer
   nvtop              # GPU process viewer
-  
+
   # === Multimedia & Applications ===
   kdenlive           # Video editing
   obs-studio         # Streaming/recording
   scrcpy             # Android screen mirroring
   steam              # Game platform
   vivaldi            # Vivaldi browser
-  
+
   # === Localization & Fonts ===
   fcitx5-mozc        # Japanese input (Mozc)
   ttf-jetbrains-mono-nerd # JetBrains Mono Nerd Font
@@ -66,6 +70,7 @@ PKGS_AUR=(
   hyprpaper          # Wallpaper management (AUR)
   swww               # Image switching / wallpaper (AUR)
   nwg-look           # GTK theme settings (AUR)
+  visual-studio-code-bin # Visual Studio Code (AUR)
 )
 
 
