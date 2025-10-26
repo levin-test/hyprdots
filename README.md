@@ -7,34 +7,25 @@ GNU stow を用いて `~/.config` などに連携する運用を前提として�
 
 ## クイックスタート
 
-# 1. このリポジトリをクローン
-
-git clone <https://github.com/levin-test/hyprdots.git>
-cd hyprdots
-./install-packages.sh
-
 ```sh
 # 1. このリポジトリをクローン
+git clone https://github.com/levin-test/hyprdots.git
+cd hyprdots
+
+# 2. パッケージをインストール（CachyOS環境想定）
+./install-packages.sh
+
+# 3. 既存の設定ディレクトリがあれば削除またはリネーム
+rm -rf ~/.config/hypr ~/.config/waybar ~/.config/rofi  # 必要に応じて
+
+# 4. 設定をホームディレクトリにリンク（stow使用）
+stow -v -t ~/.config .config  # .config配下を~/.config/にリンク
+stow -v -t ~/bin bin          # bin配下を~/bin/にリンク
 ```
 
 ## ディレクトリ構成
 
-# 2. パッケージをインストール（CachyOS環境想定）
-
-./install-packages.sh
-
-# 3. 既存の設定ディレクトリがあれば削除またはリネーム
-
-rm -rf ~/.config/hypr ~/.config/waybar ~/.config/rofi  # 必要に応じて
-
-# 4. 設定をホームディレクトリにリンク（stow使用）
-
-stow -v -t ~/.config .config  # .config配下を~/.config/にリンク
-stow -v -t ~/bin bin          # bin配下を~/bin/にリンク
-
-```
-```
-
+```text
 hyprdots/
 ├── .config/
 │   ├── hypr/        # Hyprland本体の設定
@@ -48,7 +39,6 @@ hyprdots/
 ├── bin/             # Hyprland専用の実行可能コマンド群
 ├── go/              # Go製コマンドのソース（オプション）
 └── install-packages.sh # パッケージインストールスクリプト
-
 ```
 
 ## 設定ファイル概要
@@ -152,8 +142,6 @@ stow -v -t ~/bin bin
 ## stowで安全に更新する方法
 
 ファイルの追加・削除が頻繁に発生する場合、以下の手順がもっとも安全です。
-
-stow -v .config   # その後、再度stowでリンクを作成
 
 ```sh
 # .config 配下の設定を更新する場合
